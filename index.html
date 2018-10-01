@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+<section>
+	<h1>Machine Learning</h1>
+</section>
+<section>
+	<h1>Goal</h1>
+	<p>Given an input, the goal is to generate the right output, based on a finite sample of input/output couples.<p>
+	<p>Examples:</p>
+	<ul>
+		<li>Based on the content of a document, decide whether it <i>should</i> be tagged as OC or BC</li>
+		<li>Based on an Alfresco user's viewing history, generate a list of documents they <i>want</i> to see</p>
+	</ul>
+</section>
+<section>
+	<h1>Steps</h1>
+	<ol>
+		<li>Gather a lot of sample data, ideally several thousand samples, more for difficult concepts with many inputs</li>
+		<li>Choose a machine learning library that fits your needs</li>
+		<li>Train it using 80% (typically) of the sample data</li>
+		<li>Test it using 20% of the sample data</li>
+		<li>Use the resulting function (obscure but fast calculation) in production</li>
+	</ol>
+</section>
+<section>
+	<h1>Tools</h1>
+	<ul>
+		<li>Numpy: Python numerical library, used for its arrays</li>
+		<li>TensorFlow: Neural network library, very flexible</li>
+		<li>Keras: High-level interface over TensorFlow</li>
+	</ul>
+</section>
+<section>
+	<h1>What is a tensor?</h1>
+	<ul>
+		<li>A <b>tensor</b> is a multi-dimensional array</li>
+		<li>Example: [[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]]</li>
+		<li>The <b>shape</b> of a tensor a representation of its dimensions</li>
+		<li>Example: The shape of the tensor above is [2, 2, 3] (yes, also a tensor)</li>
+		<li>Shapes sometimes have unknowns, for instance [[?,100,100,1]</li>
+		<li>Tensors are used everywhere in TensorFlow for very different things</li>
+	</ul>
+</section>
+<section>
+	<h1>Neural networks</h1>
+	<p>TensorFlow simulates a neural network:<p>
+	<ul>
+		<li>Inputs</li>
+		<li>Intermediary layers of neurons</li>
+		<li>Outputs</li>
+	</ul>
+	<p>All data coming in and out, and through each layer, is tensors</p> 
+</section>
+<section>
+	<h1>Designing a neural network</h1>
+	<ol>
+		<li>Determine what types of output you want</li>
+		<li>Make choices after looking at successful implementations for similar problems.</li>
+		<li>Train, test, check accuracy.</li>
+		<li>Depending on accuracy, rethink or fine-tune, and repeat.</li>
+	</ol>
+</section>
+<section>
+	<h1>Design choices</h1>
+	<ul>
+		<li>Input resolution, transformations (eg. grayscale)
+		<li>Number of intermediary layers</li>
+		<li>Number of neurons in each intermediary layer</li>
+		<li>Propagation (activation) function: ReLU, softmax, etc</li>
+		<li>Optimizer algorithm: GradientDescent, Adam, etc</li>
+		<li>Number of training epochs, number of steps per epoch</li>
+		<li>Sparse or not</li>
+	</ul>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Example: VGG16
+  ![](https://heuritech.files.wordpress.com/2016/02/vgg16.png?w=940)
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Hyperparameters
+
+  - Finding the right hyperparameters (design choices) takes time, experience is important.
+  - Some tools can help speed up the search for the optimal hyperparameters: https://github.com/hyperopt/hyperopt
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Practice
+
+  - Go to https://playground.tensorflow.org
+  - Run simulations
+  - Play with the parameters
+  - Try to solve problems using as few neurons as possible
+  - Make your neural network resistant to noise
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Hands on
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Getting started
+  1. sudo apt-get install virtualenv</li>
+  2. virtualenv tensorflow_env</li>
+  3. pip install tensorflow keras</li>
+  4. Write and run Python script, for instance https://www.tensorflow.org/tutorials/keras/basic_classification</li>
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Choosing a challenge
+  1. "It is not" bean recognition: Not enough samples
+  2. BC or OC: Too easy
+  3. Selfie or not
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  Selfie: ![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Lueg_im_SWR1_Studio.jpg/320px-Lueg_im_SWR1_Studio.jpg)
+
+  Not: ![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/10th_and_Phillips%2C_Sioux_Falls%2C_South_Dakota.jpg/320px-10th_and_Phillips%2C_Sioux_Falls%2C_South_Dakota.jpg)
+  ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/160423_Assfalg_01.jpg/320px-160423_Assfalg_01.jpg)
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Getting data
+  1. Downloaded pictures from Wikimedia selfie categories
+  2. Downloaded random pictures
+  3. Manually fixed misclassified pictures
+  4. In total I gathered 291 selfies and 1102 non-selfies
+  5. More data would lead to better prediction
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Splitting the data
+  - 80% for training, 20% for test.
+  - If you have millions of samples, 1% for test is acceptable 
+  - Never use test pictures for training, or vice versa
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Design choices
+  - Convert images to grayscale
+  - Resize all images to 20 pixels x 20 pixels
+  - Neural network with 4 layers
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+# Code
+```
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(thumbnail_height, thumbnail_width, 1)),
+    keras.layers.Dense(256, activation=tf.nn.relu),
+    keras.layers.Dense(128, activation=tf.nn.relu),
+    keras.layers.Dense(16, activation=tf.nn.relu),
+    keras.layers.Dense(1, activation=tf.nn.sigmoid)
+])
+```
+Running for 5 epochs took 8 hours. Running for more epochs seems advisable.
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Results
+  Accuracy on test data: 0.785
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  ![](https://raw.githubusercontent.com/nicolas-raoul/selfie-or-not/master/results-256-128-16-5epochs.png)
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Actually using ML
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # Deploying to production
+
+  1. Export from Python: `tf.saved_model.builder.SavedModelBuilder`
+  2. Import from Java: `SavedModelBundle.load`
+
+  Also usable from other languages such as JavaScript.
+</textarea>
+</section>
+<section>
+	<h1>Performance</h1>
+	<ul>
+		<li>Training
+		<ul>
+			<li>Very slow, very CPU/GPU-intensive, memory-intensive if using a big network or big batches</li>
+			<li>Tips: Use a GPU, compile TensorFlow to match your hardware</li>
+		</ul>
+		</li>
+		<li>In production</li>
+		<ul>
+			<li>Extremely fast</li>
+			<li>Low memory</li>
+		</ul>
+		</li>
+		<li>Size in Java is 80 MB, but can be reduced to 1.5MB</p>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # When to use ML?
+
+  - When implementing a function:
+    - with few inputs and few outputs
+    - that does not modify any state nor write anything
+    - with no human interaction nor configuration
+  - Must have at least 1000 input/output samples for each class
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # When NOT to use ML?
+
+  - When a performant algorithm could be written in less than a few weeks
+  - When errors would have harmful consequences
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+  # What will you use ML for?
+  ![](https://aegif.jp/images/top/illust17.png)
+</textarea>
+</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
