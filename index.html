@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Machine Learning</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/aegif.css">
@@ -25,9 +25,10 @@
 		<div class="reveal">
 			<div class="slides">
 <section>
-<section data-markdown><textarea data-template>
-  # Machine Learning
-</textarea></section><section data-markdown><textarea data-template>
+  <h1>Machine Learning</h1>
+  <p style="font-size: 150%">Nicolas Raoul, Aegif</p>
+  <p>October 3, 2018</p>
+</section><section data-markdown><textarea data-template>
   # Goal
   - Given an input, the goal is to generate the right output, based on a finite sample of input/output couples.
   - Examples:
@@ -90,10 +91,10 @@
   # Practice
 
   - Go to https://playground.tensorflow.org
-  - Run simulations
-  - Play with the parameters
-  - Try to solve problems using as few neurons as possible
-  - Make your neural network resistant to noise
+  - Run simulations.
+  - Play with the parameters.
+  - Try to solve problems using as few neurons as possible.
+  - Make your neural network resistant to noise.
 </textarea></section><section data-markdown><textarea data-template>
   # Hands on
 </textarea></section><section data-markdown><textarea data-template>
@@ -114,44 +115,44 @@
   ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/160423_Assfalg_01.jpg/320px-160423_Assfalg_01.jpg)
 </textarea></section><section data-markdown><textarea data-template>
   # Getting data
-  1. Downloaded sample pictures from Wikimedia selfie categories
-  2. Downloaded random pictures
-  3. Manually fixed misclassified pictures
-  4. In total I gathered 291 selfies and 1102 non-selfies
-  5. More data would lead to better prediction
+  1. Downloaded sample pictures from Wikimedia selfie categories.
+  2. Downloaded random pictures.
+  3. Manually fixed misclassified pictures.
+  4. In total I gathered 291 selfies and 1102 non-selfies.
+  5. More data would lead to better prediction.
 </textarea></section><section data-markdown><textarea data-template>
   # Splitting the data
   - 80% for training, 10% for validation, 10% for test.
-  - If you have millions of samples, using most of the data for training is acceptable 
-  - Never use validation pictures for training, or test pictures for validation, or vice versa
+  - If you have millions of samples, using most of the data for training is acceptable.
+  - Never use validation pictures for training, or test pictures for validation, or vice versa.
 </textarea></section><section data-markdown><textarea data-template>
   # Design choices
-  - Convert images to grayscale
-  - Resize all images to 20 pixels x 20 pixels
-  - Neural network with 4 layers
+  - Convert images to grayscale.
+  - Resize all images to 20 pixels x 20 pixels.
+  - Neural network with 4 layers.
 </textarea></section><section data-markdown><textarea data-template>
 # Code
-1. Loading and pre-processing of the data
-2. Definition of the model (see next slide)
-3. Training
-4. Validation
-5. Output weights (to use in production) and statistics
+1. Loading and pre-processing of the data.
+2. Definition of the model (see next slide).
+3. Training.
+4. Validation.
+5. Output weights (to use in production) and statistics.
 </textarea></section><section data-markdown><textarea data-template>
 # Code
 ```
 model = keras.Sequential([
-    keras.layers.Conv2D(filters=64, kernel_size=2, padding='same', activation='relu', input_shape=(thumbnail_height, thumbnail_width, 1)),
-    keras.layers.MaxPooling2D(pool_size=2),
-    keras.layers.Dropout(0.3),
+    Conv2D(filters=64, kernel_size=2, padding='same', activation='relu', input_shape=(thumbnail_height, thumbnail_width, 1)),
+    MaxPooling2D(pool_size=2),
+    Dropout(0.3),
 
-    keras.layers.Conv2D(filters=32, kernel_size=2, padding='same', activation='relu'),
-    keras.layers.MaxPooling2D(pool_size=2),
-    keras.layers.Dropout(0.3),
+    Conv2D(filters=32, kernel_size=2, padding='same', activation='relu'),
+    MaxPooling2D(pool_size=2),
+    Dropout(0.3),
 
-    keras.layers.Flatten(),
-    keras.layers.Dense(256, activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(1, activation=tf.nn.sigmoid)
+    Flatten(),
+    Dense(256, activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(1, activation=tf.nn.sigmoid)
 ])
 
 model.compile(optimizer=tf.train.AdamOptimizer(),
@@ -164,7 +165,7 @@ model.compile(optimizer=tf.train.AdamOptimizer(),
 - Running for 10 epochs takes 1 hour.
 </textarea></section><section data-markdown><textarea data-template>
   # Results
-  Accuracy on test data: 85%
+  Accuracy on test data: 86%
 </textarea></section><section data-markdown><textarea data-template>
   ![](https://raw.githubusercontent.com/nicolas-raoul/selfie-or-not/master/results.png)
 </textarea></section><section data-markdown><textarea data-template>
@@ -191,15 +192,15 @@ model.compile(optimizer=tf.train.AdamOptimizer(),
   # When to use ML?
 
   - When implementing a function:
-     - with few inputs and few outputs
-     - that does not modify any state nor write anything
-     - with no human interaction nor configuration
-  - Must have at least 1000 input/output samples for each class
+     - with few inputs and few outputs,
+     - that does not modify any state nor write anything,
+     - with no human interaction nor configuration.
+  - Must have at least 1000 input/output samples for each class.
 </textarea></section><section data-markdown><textarea data-template>
   # When NOT to use ML?
 
-  - When a performant algorithm could be written in less than a few weeks
-  - When errors would have harmful consequences
+  - When a performant algorithm could be written in less than a few weeks.
+  - When errors would have harmful consequences.
 </textarea></section><section data-markdown><textarea data-template>
   # What will you use ML for?
   ![](https://aegif.jp/images/top/illust17.png)
