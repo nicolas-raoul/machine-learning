@@ -26,14 +26,14 @@
 			<div class="slides">
 <section>
   <h1>Machine Learning</h1>
-  <p style="font-size: 150%">Nicolas Raoul, Aegif</p>
+  <p style="font-size: 150%">Nicolas Raoul</p>
   <p>October 3, 2018</p>
 </section><section data-markdown><textarea data-template>
   # Goal
   - Given an input, the goal is to generate the right output, based on a finite sample of input/output couples.
   - Examples:
-     - Based on the content of a document, decide whether it *should* be tagged as OC or BC.
-     - Based on an Alfresco user's viewing history, generate a list of documents they *want* to see.
+     - Based on the content of a document, tag it as "work" or "private".
+     - Based on a website visitor navigation, recommend products they are likely to want.
 </textarea></section><section data-markdown><textarea data-template>
   # Steps
   1. Gather a lot of sample data, ideally several thousand samples, more for difficult concepts with many inputs or many outputs.
@@ -103,11 +103,6 @@
   2. virtualenv tensorflow_env
   3. pip install tensorflow keras
   4. Write and run Python script, for instance https://www.tensorflow.org/tutorials/keras/basic_classification
-</textarea></section><section data-markdown><textarea data-template>
-  # Choosing a challenge
-  1. "It is not" bean recognition: Not enough samples
-  2. BC or OC: Too easy
-  3. Selfie or not
 </textarea></section><section data-markdown><textarea data-template>
   Selfie: ![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Lueg_im_SWR1_Studio.jpg/320px-Lueg_im_SWR1_Studio.jpg)
 
